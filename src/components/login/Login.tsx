@@ -1,27 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { login, validateSchema } from "../../services/AuthService";
 import { User } from "../../types/User";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { login, validateSchema } from "../../services/AuthService";
+import { ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import LogoB2Bit from '../../assets/B2BitLogo.png';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async (values: User) => {
     try {
       await login(values);
       navigate("/profile");
     } catch (error) {
-      setError("Credenciais inválidas. Por favor, verifique seus dados e tente novamente.");
+    
+      toast.error("Credenciais inválidas. Por favor, verifique seus dados e tente novamente.", {
+  
+      });
     }
   };
 
   return (
-    <div className="container w-96  m-auto mt-40 p-3 rounded-2xl shadow-2xl bg-white">
-      {error && <div className="text-red-500">{error}</div>}
-      <div className="w-64 mt-4 m-auto">
+
+      <div className="container w-96 m-auto mt-40 rounded-2xl shadow-2xl bg-white">
+        <div className="w-64 m-auto">
           <img
             src={LogoB2Bit}
             alt="B2Bit Logo"
@@ -76,9 +80,11 @@ const Login: React.FC = () => {
               </Form>
             )}
           </Formik>
+          <ToastContainer/>
         </div>
-      
-    </div>
+      </div>
+  
+    
   );
 };
 
