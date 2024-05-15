@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { User } from "../../types/User";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { login, validateSchema } from "../../services/AuthService";
+import LogoB2Bit from '../../assets/B2BitLogo.png';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -18,15 +19,15 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="container w-96 m-auto mt-40 rounded-lg shadow-2xl bg-white">
+    <div className="container w-96  m-auto mt-40 p-3 rounded-2xl shadow-2xl bg-white">
       {error && <div className="text-red-500">{error}</div>}
-      <div className="sm:mx-auto sm:w-auto sm:max-w-sm">
+      <div className="w-64 mt-4 m-auto">
           <img
-            src="..\..\assets\logo-b2bit.png"
+            src={LogoB2Bit}
             alt="B2Bit Logo"
           />
         </div>
-        <div className="mt-10 mb-10 sm:mx-auto sm:w-auto sm:max-w-sm">
+        <div className="mt-10 sm:mx-auto sm:w-auto sm:max-w-sm">
           <Formik
             initialValues={{ email: "",
             password: ""}}
@@ -36,14 +37,14 @@ const Login: React.FC = () => {
             {({ isSubmitting }) => (
               <Form className="space-y-6">
                 <div className="m-3">
-                  <label htmlFor="email" className="block  font-medium text-gray-800">
+                  <label htmlFor="email" className="block font-medium text-gray-800">
                     E-mail
                   </label>
                   <Field
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-3 py-2 rounded-lg border-none bg-gray-100 focus:outline-none focus:ring-1 focus:ring-gray-600"
+                    className="w-full px-3 py-3 rounded-lg border-none bg-[#F1F1F1] focus:outline-none focus:ring-1 focus:ring-gray-600"
                     placeholder="@gmail.com"
                   />
                   <ErrorMessage name="email" component="div" className="text-red-500" />
@@ -57,7 +58,7 @@ const Login: React.FC = () => {
                     type="password"
                     id="password"
                     name="password"
-                    className="w-full px-3 py-2 rounded-lg border-none bg-gray-100 focus:outline-none focus:ring-1 focus:ring-gray-600"
+                    className="w-full px-3 py-3 rounded-lg border-none bg-[#F1F1F1] focus:outline-none focus:ring-1 focus:ring-gray-600"
                     placeholder="************"
                   />
                   <ErrorMessage name="password" component="div" className="text-red-500" />
@@ -66,7 +67,7 @@ const Login: React.FC = () => {
                 <div className="p-3">
                   <button
                     type="submit"
-                    className="w-full text-center font-medium px-4 py-2 bg-[#02274F] text-white rounded-lg hover:bg-[#37699e]"
+                    className="w-full text-center font-medium px-4 py-3 bg-[#02274F] text-white rounded-lg hover:bg-[#37699e]"
                     disabled={isSubmitting}
                   >
                     Sign In
