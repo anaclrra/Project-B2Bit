@@ -25,11 +25,29 @@ const UserProfile: React.FC = () => {
 
   return (
     <div>
-      <p>Nome: {userProfile.name}</p>
-      <p>Email: {userProfile.email}</p>
-    
-      {/* {userProfile.avatar && <img src={userProfile.avatar} alt="Avatar do usuário" />}
-     */}
+      <header className='flex justify-end items-end bg-white p-3 '>
+        <button className="text-center font-medium px-4 py-2 w-60 bg-[#02274F] text-white rounded-lg hover:bg-[#37699e]"
+        >LogOut</button>
+      </header>
+  
+      <div className="container w-96 m-auto mt-40 rounded-lg shadow-2xl bg-white">
+        <div className='mb-60'>
+          <div className='flex flex-col justify-center items-center'>
+            <h4 className='text-center font-medium'>Profile Picture</h4>
+            <img src={userProfile.avatar} alt="User Avatar" />
+          </div>
+
+          <div className='m-3'>
+            <p className='p-1'>Your <strong>Name</strong></p>
+            <p className='bg-gray-100 p-3 rounded-md'> {userProfile.name}</p>
+          </div>
+          <div className='m-3'>
+            <p className='p-1'>Your <strong>E-mail</strong></p>
+            <p className='bg-gray-100 p-3 rounded-md'>{userProfile.email}</p>
+        
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
