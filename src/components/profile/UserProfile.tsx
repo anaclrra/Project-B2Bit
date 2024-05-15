@@ -27,36 +27,35 @@ const UserProfile: React.FC = () => {
   };
 
    if (!userProfile) {
-        return <div>Carregando perfil...</div>;
+        return <div className='container w-40 m-auto mt-60 p-3 rounded-2xl shadow-md'>Carregando perfil...</div>;
     } 
 
   return (
     <div>
-      <header className='flex justify-end items-end bg-white p-3 '>
-        <button className="text-center font-medium px-4 py-2 w-60 bg-[#02274F] text-white rounded-lg hover:bg-[#37699e]"
+      <header className='flex justify-end items-end  bg-white p-3 '>
+        <button className="text-center font-medium px-4 mx-6 py-2 w-60 bg-[#02274F] text-white rounded-lg hover:bg-[#37699e]"
         onClick={handleLogout}
         >LogOut</button>
       </header>
   
-      <div className="container w-96 m-auto mt-40 rounded-lg shadow-2xl bg-white">
-        <div className='mb-60'>
+      <div className="container w-96 m-auto p-2 mt-20 rounded-lg shadow-2xl bg-white">
           <div className='flex flex-col justify-center items-center'>
             <h4 className='text-center font-medium'>Profile Picture</h4>
             <img src={userProfile.avatar} alt="User Avatar" />
           </div>
 
           <div className='m-3'>
-            <p className='p-1'>Your <strong>Name</strong></p>
+            <p className=''>Your <strong>Name</strong></p>
             <p className='bg-gray-100 p-3 rounded-md'> {userProfile.name}</p>
           </div>
           <div className='m-3'>
-            <p className='p-1'>Your <strong>E-mail</strong></p>
+            <p className=''>Your <strong>E-mail</strong></p>
             <p className='bg-gray-100 p-3 rounded-md'>{userProfile.email}</p>
         
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 
