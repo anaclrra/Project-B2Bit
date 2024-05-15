@@ -1,34 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../types/User";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { login, validateSchema } from "../../services/AuthService";
 
-
-
 const Login: React.FC = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
 
-    const handleLogin = async (values: User) => {
-    
-        try {
-            const userData = await login(values);
-            console.log('Usuário autenticado:', userData);
-            navigate('/profile')
-        } catch (error: any) {
-            console.error('Erro ao fazer login:', error.message);
-        }
-    };
+  const handleLogin = async (values: User) => {
+    try {
+      await login(values);
+      navigate("/profile");
+    } catch (error) {
+      setError("Credenciais inválidas. Por favor, verifique seus dados e tente novamente.");
+    }
+  };
 
-    return (
-      <div className="container w-96 m-auto mt-40 rounded-lg shadow-2xl bg-white">
-        <div className="sm:mx-auto sm:w-auto sm:max-w-sm">
+  return (
+    <div className="container w-96 m-auto mt-40 rounded-lg shadow-2xl bg-white">
+      {error && <div className="text-red-500">{error}</div>}
+      <div className="sm:mx-auto sm:w-auto sm:max-w-sm">
           <img
             src="..\..\assets\logo-b2bit.png"
             alt="B2Bit Logo"
           />
         </div>
-  
         <div className="mt-10 mb-10 sm:mx-auto sm:w-auto sm:max-w-sm">
           <Formik
             initialValues={{ email: "",
@@ -79,9 +76,9 @@ const Login: React.FC = () => {
             )}
           </Formik>
         </div>
-      </div>
-    );
-  };
-  
+      
+    </div>
+  );
+};
 
 export default Login;
