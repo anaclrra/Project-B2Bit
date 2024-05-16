@@ -24,7 +24,7 @@ const Login: React.FC = () => {
 
   return (
 
-      <div className="container w-96 m-auto mt-40 rounded-2xl shadow-2xl bg-white">
+      <div className="container w-96 m-auto mt-20 rounded-2xl shadow-2xl bg-white">
         <div className="w-64 m-auto">
           <img
             src={LogoB2Bit}

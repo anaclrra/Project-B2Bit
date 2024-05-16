@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { getProfile } from '../../services/UserService';
+import { getUser } from '../../services/UserService';
 import { User } from '../../types/User';
 import { useNavigate } from 'react-router-dom';
+import defaultAvatar from '../../assets/avatar.png';
 
 const UserProfile: React.FC = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const UserProfile: React.FC = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const profileData = await getProfile();
+        const profileData = await getUser();
         setUserProfile(profileData);
       } catch (error) {
         console.error('Erro ao buscar perfil:', error);
@@ -22,7 +23,7 @@ const UserProfile: React.FC = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
-    navigate('/login');
+    navigate('/');
     
   };
 
@@ -31,26 +32,27 @@ const UserProfile: React.FC = () => {
     } 
 
   return (
-    <div>
+    <div className='bg-[#F1F5F9] h-screen'>
       <header className='flex justify-end items-end  bg-white p-3 '>
         <button className="text-center font-medium px-4 mx-6 py-2 w-60 bg-[#02274F] text-white rounded-lg hover:bg-[#37699e]"
         onClick={handleLogout}
         >LogOut</button>
       </header>
   
-      <div className="container w-96 m-auto p-2 mt-20 rounded-lg shadow-2xl bg-white">
+      <div className="container w-96 m-auto p-2 mt-20 rounded-2xl shadow-2xl bg-white">
           <div className='flex flex-col justify-center items-center'>
-            <h4 className='text-center font-medium'>Profile Picture</h4>
-            <img src={userProfile.avatar} alt="User Avatar" />
+            <h4 className='text-center font-medium mt-6'>Profile picture</h4>
+            <img src={userProfile.avatar || defaultAvatar} alt="User Avatar" 
+            className='w-14 h-auto rounded-lg mt-2' />
           </div>
 
-          <div className='m-3'>
-            <p className=''>Your <strong>Name</strong></p>
-            <p className='bg-gray-100 p-3 rounded-md'> {userProfile.name}</p>
+          <div className='mx-3'>
+            <p className='my-2'>Your <strong>Name</strong></p>
+            <p className=' bg-gray-100 p-3 rounded-md'> {userProfile.name}</p>
           </div>
-          <div className='m-3'>
-            <p className=''>Your <strong>E-mail</strong></p>
-            <p className='bg-gray-100 p-3 rounded-md'>{userProfile.email}</p>
+          <div className='mx-3'>
+            <p className='my-2'>Your <strong>E-mail</strong></p>
+            <p className='mb-6 bg-gray-100 p-3 rounded-md'>{userProfile.email}</p>
         
           </div>
         </div>
