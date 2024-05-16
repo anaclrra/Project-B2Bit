@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { login, validateSchema } from "../../services/AuthService";
 import { User } from "../../types/User";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { ToastContainer, toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import LogoB2Bit from '../../assets/B2BitLogo.png';
 
 const Login: React.FC = () => {
@@ -15,10 +13,7 @@ const Login: React.FC = () => {
       await login(values);
       navigate("/profile");
     } catch (error) {
-    
-      toast.error("Credenciais inválidas. Por favor, verifique seus dados e tente novamente.", {
-  
-      });
+      console.error(error);  
     }
   };
 
@@ -80,7 +75,7 @@ const Login: React.FC = () => {
               </Form>
             )}
           </Formik>
-          <ToastContainer/>
+          
         </div>
       </div>
   

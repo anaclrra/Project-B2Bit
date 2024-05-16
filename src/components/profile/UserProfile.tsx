@@ -14,12 +14,12 @@ const UserProfile: React.FC = () => {
         const profileData = await getUser();
         setUserProfile(profileData);
       } catch (error) {
-        console.error('Erro ao buscar perfil:', error);
+        console.error(error);
       }
     };
 
     fetchUserProfile();
-  }, [userProfile]);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
