@@ -6,12 +6,14 @@ export const login = async (user: User): Promise<void> => {
   try {
     const response = await httpClient.post('/auth/login/', user);
 
-    if(response.status !== 200) {
-        console.log(response.data);
-        throw new Error('Erro de autenticação');
+    if(response.status === 200) {
+      localStorage.setItem('accessToken', response.data.tokens.access);
+
+    }else{
+      throw new Error('Erro de autenticação');
+
     }
 
-    localStorage.setItem('accessToken', response.data.tokens.access);
   } catch (error: any) {
     throw new Error('Erro ao fazer login:' + error.message);
   }
