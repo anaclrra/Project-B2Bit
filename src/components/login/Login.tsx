@@ -19,14 +19,14 @@ const Login: React.FC = () => {
 
   return (
 
-      <div className="container w-96 m-auto mt-20 rounded-2xl shadow-2xl bg-white">
-        <div className="w-64 m-auto">
+      <div className="container w-96 p-3 m-auto mt-20 rounded-2xl shadow-2xl bg-white">
+        <div className="w-64 m-auto pt-6">
           <img
             src={LogoB2Bit}
             alt="B2Bit Logo"
           />
         </div>
-        <div className="mt-10 sm:mx-auto sm:w-auto sm:max-w-sm">
+        <div className="mt-7 sm:mx-auto sm:w-auto sm:max-w-sm">
           <Formik
             initialValues={{ email: "",
             password: ""}}

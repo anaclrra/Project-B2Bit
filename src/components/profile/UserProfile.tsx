@@ -39,7 +39,7 @@ const UserProfile: React.FC = () => {
         >LogOut</button>
       </header>
   
-      <div className="container w-96 m-auto p-2 mt-20 rounded-2xl shadow-2xl bg-white">
+      <div className="container w-96 m-auto p-2 mt-20 rounded-2xl shadow-md bg-white">
           <div className='flex flex-col justify-center items-center'>
             <h4 className='text-center font-medium mt-6'>Profile picture</h4>
             <img src={userProfile.avatar || defaultAvatar} alt="User Avatar" 
